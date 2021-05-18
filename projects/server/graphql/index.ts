@@ -1,27 +1,14 @@
-const schema = `
-  type Query {
-    user(email: String!): User
-  }
+import path from 'path'
+import { loadFilesSync } from '@graphql-tools/load-files'
+import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge'
+import { makeExecutableSchema } from '@graphql-tools/schema'
 
-  type User {
-    id: Int
-    email: String!
-    name: String
-  }
-`
+const typeDefs = loadFilesSync(path.join(__dirname, './schemas/*.graphql'))
+const resolvers = loadFilesSync(path.join(__dirname, './resolvers/*.ts'))
 
-const resolvers = {
-  Query: {
-    user: async (_: any, args: any, context: any) => {
-      const user = await context.prisma.user.findUnique({
-        where: {
-          email: args.email,
-        },
-      })
+const schema = makeExecutableSchema({
+  typeDefs: mergeTypeDefs(typeDefs),
+  resolvers: mergeResolvers(resolvers),
+})
 
-      return user
-    },
-  },
-}
-
-export { schema, resolvers }
+export default schema

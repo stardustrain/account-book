@@ -1,17 +1,16 @@
 import fastify from 'fastify'
 import mercurius from 'mercurius'
 
-import { schema, resolvers } from '../graphql'
+import schema from '../graphql'
 import { PrismaClient } from './generated/client'
 
 const prisma = new PrismaClient()
 const server = fastify({
-  logger: true,
+  // logger: true,
 })
 
 server.register(mercurius, {
   schema,
-  resolvers,
   graphiql: true,
   context: () => {
     return {
@@ -25,5 +24,6 @@ server.listen(4000, (err, address) => {
     server.log.error(err)
     process.exit(1)
   }
+  console.info('server listening on 4000')
   server.log.info('server listening on 4000')
 })

@@ -1,8 +1,12 @@
 {
   "name": "server",
   "dependencies": {
+    "@graphql-tools/load-files": "^6.3.2",
+    "@graphql-tools/merge": "^6.2.14",
+    "@graphql-tools/schema": "^7.1.5",
     "@prisma/client": "^2.22.1",
     "fastify": "^3.15.1",
+    "graphql": "^15.5.0",
     "mercurius": "^7.6.1"
   },
   "scripts": {
