@@ -1,9 +1,15 @@
-const resolvers = {
+import type { QueryResolvers } from '../../generated/resolvers'
+
+type UserResolver = {
+  Query: QueryResolvers
+}
+
+const resolvers: UserResolver = {
   Query: {
-    user: async (_: any, args: any, context: any) => {
-      return await context.prisma.user.findUnique({
+    user: async (_, { email }, { prisma }) => {
+      return await prisma.user.findUnique({
         where: {
-          email: args.email,
+          email: email,
         },
       })
     },

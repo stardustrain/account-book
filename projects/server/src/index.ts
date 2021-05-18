@@ -2,12 +2,19 @@ import fastify from 'fastify'
 import mercurius from 'mercurius'
 
 import schema from '../graphql'
-import { PrismaClient } from './generated/client'
+import { PrismaClient } from '../generated/client'
 
 const prisma = new PrismaClient()
 const server = fastify({
   // logger: true,
 })
+
+const contextBuilder = () => {
+  return {
+    prisma,
+  }
+}
+export type Context = ReturnType<typeof contextBuilder>
 
 server.register(mercurius, {
   schema,

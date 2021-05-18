@@ -1,0 +1,21 @@
+overwrite: true
+schema: 'projects/server/graphql/schemas/*.graphql'
+generates:
+  projects/shared/models.d.ts:
+    plugins:
+      - typescript
+    config:
+      constEnums: true
+      namingConvention:
+        enumValues: upper-case#upperCase
+      avoidOptionals: true
+  projects/server/generated/resolvers.d.ts:
+    plugins:
+      - typescript
+      - typescript-resolvers
+    config:
+      constEnums: true
+      namingConvention:
+        enumValues: upper-case#upperCase
+      avoidOptionals: true
+      contextType: ../src/index#Context
