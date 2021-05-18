@@ -1,12 +1,20 @@
 import fastify from 'fastify'
+import { PrismaClient } from './generated/client'
 
 const server = fastify({
   logger: true,
 })
+const prisma = new PrismaClient()
 
-server.get('/', (req, res) => {
+server.get('/', async (req, res) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      email: 'test@test.com',
+    },
+  })
   res.send({
     hello: 'world',
+    user,
   })
 })
 
