@@ -1,11 +1,15 @@
 {
   "name": "server",
   "dependencies": {
+    "@prisma/client": "^2.22.1",
     "fastify": "^3.15.1"
   },
   "scripts": {
     "lint": "eslint",
-    "dev": "NODE_ENV=development ts-node src/index.ts",
+    "prisma": "prisma",
+    "prisma:generate": "prisma generate",
+    "predev": "yarn prisma:generate",
+    "dev": "NODE_ENV=development tsnd ./src/index.ts",
     "build": "NODE_ENV=production tsc"
   },
   "devDependencies": {
@@ -13,7 +17,8 @@
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "eslint": "^7.26.0",
-    "ts-node": "^9.1.1",
+    "prisma": "^2.22.1",
+    "ts-node-dev": "^1.1.6",
     "typescript": "^4.2.4"
   }
 }
