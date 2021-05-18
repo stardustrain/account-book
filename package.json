@@ -4,6 +4,7 @@
     "projects/*"
   ],
   "scripts": {
+    "generate:type": "graphql-codegen",
     "server:dev": "yarn workspace server dev",
     "webapp:dev": "yarn workspace webapp dev",
     "lint": "yarn workspaces foreach run lint",
@@ -13,6 +14,9 @@
     "postpublish": "pinst --enable"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.4",
+    "@graphql-codegen/typescript": "^1.22.0",
+    "@graphql-codegen/typescript-resolvers": "^1.19.1",
     "@yarnpkg/pnpify": "^3.0.0-rc.3",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
@@ -22,5 +26,8 @@
   },
   "lint-staged": {
     "projects/**/*.{ts,tsx}": "prettier --write"
+  },
+  "dependencies": {
+    "graphql": "^15.5.0"
   }
 }
