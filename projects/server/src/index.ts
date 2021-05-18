@@ -1,21 +1,23 @@
 import fastify from 'fastify'
+import mercurius from 'mercurius'
+
+import { schema, resolvers } from '../graphql'
 import { PrismaClient } from './generated/client'
 
+const prisma = new PrismaClient()
 const server = fastify({
   logger: true,
 })
-const prisma = new PrismaClient()
 
-server.get('/', async (req, res) => {
-  const user = await prisma.user.findUnique({
-    where: {
-      email: 'test@test.com',
-    },
-  })
-  res.send({
-    hello: 'world',
-    user,
-  })
+server.register(mercurius, {
+  schema,
+  resolvers,
+  graphiql: true,
+  context: () => {
+    return {
+      prisma,
+    }
+  },
 })
 
 server.listen(4000, (err, address) => {
