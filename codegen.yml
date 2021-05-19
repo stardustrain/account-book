@@ -17,5 +17,4 @@ generates:
       constEnums: true
       namingConvention:
         enumValues: upper-case#upperCase
-      avoidOptionals: true
       contextType: ../src/index#Context

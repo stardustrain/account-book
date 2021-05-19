@@ -4,7 +4,11 @@ import mercurius from 'mercurius'
 import schema from '../graphql'
 import { PrismaClient } from '../generated/client'
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient({
+  rejectOnNotFound: () => {
+    throw Error('NOT_FOUND')
+  },
+})
 const server = fastify({
   // logger: true,
 })

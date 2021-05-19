@@ -9403,6 +9403,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["rambda", [
+        ["npm:6.7.0", {
+          "packageLocation": "./.yarn/cache/rambda-npm-6.7.0-cde41dc18b-5863f916f7.zip/node_modules/rambda/",
+          "packageDependencies": [
+            ["rambda", "npm:6.7.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["randombytes", [
         ["npm:2.1.0", {
           "packageLocation": "./.yarn/cache/randombytes-npm-2.1.0-e3da76bccf-ede2693af0.zip/node_modules/randombytes/",
@@ -10065,6 +10074,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mercurius", "npm:7.6.1"],
             ["nodemon", "npm:2.0.7"],
             ["prisma", "npm:2.22.1"],
+            ["rambda", "npm:6.7.0"],
             ["ts-node", "virtual:14bbcbd07e0b259d02805bb1b50f715cfe4a26b438c4500912cf98e60b90a0339e00e260cff55a0b78a2917eec2e1ffd319ad2615b324495770e6a71eb973b98#npm:9.1.1"],
             ["typescript", "patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"]
           ],

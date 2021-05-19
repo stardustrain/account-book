@@ -1,3 +1,4 @@
 type Query {
+  node(id: String!): Node
   user(email: String!): User
 }
