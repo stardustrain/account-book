@@ -1,0 +1,23 @@
+type LedgerItem implements Node {
+  id: ID!
+  date: String!
+  description: String!
+  cash: Int!
+  card: Int!
+  category: Category!
+  tag: String
+  createdAt: String!
+  updatedAt: String!
+}
+
+type LedgerItemEdge {
+  cursor: String!
+  node: LedgerItem!
+}
+
+type LedgerItemConnection {
+  edges: [LedgerItemEdge!]
+  nodes: [LedgerItem!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
