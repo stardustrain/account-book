@@ -1,7 +1,7 @@
 import fastify from 'fastify'
 import mercurius from 'mercurius'
 
-import schema from '../graphql'
+import schema, { dataSources } from './graphql'
 import { PrismaClient } from '../generated/client'
 
 const prisma = new PrismaClient({
@@ -13,21 +13,22 @@ const server = fastify({
   // logger: true,
 })
 
-const contextBuilder = () => {
+const contextBuilder = async () => {
   return {
     prisma,
+    dataSources: dataSources.reduce((arr: { [key: string]: InstanceType<typeof dataSources[number]> }, dataSource) => {
+      arr[dataSource.name.toLowerCase()] = new dataSource({}, prisma)
+      return arr
+    }, {}),
   }
 }
-export type Context = ReturnType<typeof contextBuilder>
+type PromiseType<T> = T extends PromiseLike<infer U> ? U : T
+export type Context = PromiseType<ReturnType<typeof contextBuilder>>
 
 server.register(mercurius, {
   schema,
   graphiql: true,
-  context: () => {
-    return {
-      prisma,
-    }
-  },
+  context: contextBuilder,
 })
 
 server.listen(4000, (err, address) => {

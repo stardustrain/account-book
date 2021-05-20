@@ -1,6 +1,6 @@
 import { omit } from 'rambda'
-import { btoa } from '../../src/utils/base64'
-import type { QueryResolvers } from '../../generated/resolvers'
+import { btoa } from '../../utils/base64'
+import type { QueryResolvers } from '../../../generated/resolvers'
 
 type UserResolver = {
   Query: QueryResolvers

@@ -1,7 +1,7 @@
 import { includes, cond, equals } from 'rambda'
-import { atob, btoa } from '../../src/utils/base64'
-import type { PrismaClient } from '../../generated/client'
-import type { QueryResolvers, NodeResolvers } from '../../generated/resolvers'
+import { atob, btoa } from '../../utils/base64'
+import type { PrismaClient } from '../../../generated/client'
+import type { QueryResolvers, NodeResolvers } from '../../../generated/resolvers'
 
 const nodeImplementsTypes = ['Category', 'LedgerItem', 'User'] as const
 const isNodeImplementsTypes = (type?: string): type is typeof nodeImplementsTypes[number] =>
