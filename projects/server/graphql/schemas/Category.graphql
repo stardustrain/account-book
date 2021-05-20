@@ -1,7 +1,18 @@
 type Category implements Node {
   id: ID!
   title: String!
-  ledgerItemConnection: LedgerItemConnection
-  createdAt: String!
-  updatedAt: String!
+  ledgerItemConnection(after: String, first: Int, before: String, last: Int): LedgerItemConnection
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type CategoryEdge {
+  cursor: String!
+  node: Category!
+}
+
+type CategoryConnection {
+  edges: [CategoryEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
 }
