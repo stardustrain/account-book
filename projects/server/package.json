@@ -14,7 +14,7 @@
     "prisma": "prisma",
     "prisma:generate": "prisma generate",
     "predev": "yarn prisma:generate",
-    "dev": "NODE_ENV=development tsnd ./src/index.ts",
+    "dev": "NODE_ENV=development nodemon",
     "build": "NODE_ENV=production tsc"
   },
   "devDependencies": {
@@ -22,8 +22,9 @@
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "eslint": "^7.26.0",
+    "nodemon": "^2.0.7",
     "prisma": "^2.22.1",
-    "ts-node-dev": "^1.1.6",
+    "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   }
 }
