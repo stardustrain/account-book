@@ -1,14 +1,14 @@
 import { btoa } from '../../utils/base64'
 import Pagination from './Pagination'
 import type { PaginationConstructorParams } from './Pagination'
-import type { PrismaClient, Category as CategoryType } from '../../../generated/client'
+import type { PrismaClient, Category } from '../../../generated/client'
 import type { Maybe } from '../../../../shared/models'
 
-export default class Category extends Pagination<CategoryType[]> {
+export default class CategoryDataSource extends Pagination<Category[]> {
   prisma: PrismaClient
 
-  constructor(params: PaginationConstructorParams, prisma: PrismaClient) {
-    super(params)
+  constructor(prisma: PrismaClient) {
+    super()
     this.prisma = prisma
   }
 

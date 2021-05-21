@@ -34,12 +34,7 @@ export default abstract class Pagination<T extends any[] = any[]> {
   findManyOptions?: PrismaFindmanyParams
   typeName: Maybe<string> = null
 
-  constructor({ nodes, after, first, before, last }: PaginationConstructorParams<T>) {
-    this._nodes = nodes
-    this.after = after
-    this.first = first
-    this.before = before
-    this.last = last
+  constructor() {
     this.paginationDirection = null
     this.size = 0
   }
@@ -196,10 +191,6 @@ export default abstract class Pagination<T extends any[] = any[]> {
       console.log('after or no')
       this.nodes = take(this.size, this._nodes) as PaginationModel<T>
     }
-
-    // if (isNil(this.paginationDirection) && paginationStatus.hasNextPage) {
-    //   this.nodes = take(this.size, this._nodes) as PaginationModel<T>
-    // }
 
     if (this.paginationDirection === PaginationDirection.BACKWARD && paginationStatus.hasPreviousPage) {
       this.nodes = drop(1, this._nodes) as PaginationModel<T>
