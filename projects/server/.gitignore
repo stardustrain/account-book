@@ -1,3 +1,4 @@
 dist/
 generated/
 dev.db
+coverage/
