@@ -1,4 +1,4 @@
-import { isNil, take, drop } from 'rambda'
+import { isNil } from 'rambda'
 import { atob, btoa } from '../../utils/base64'
 import type { Maybe } from '../../../../shared/models'
 
@@ -12,34 +12,129 @@ type PrismaFindmanyParams = {
   take?: number
   skip?: number
 }
-type PaginationModel<T extends any[], U = 'id'> = U extends keyof T[number] ? T : never
-export type PaginationConstructorParams<T extends any[] = any[]> = {
-  nodes?: PaginationModel<T>
+type PaginationModel<T, U = 'id'> = U extends keyof T ? T & { id: number } : never
+export type PaginationParams = {
   after?: Maybe<string>
   first?: Maybe<number>
   before?: Maybe<string>
   last?: Maybe<number>
 }
 
-export default abstract class Pagination<T extends any[] = any[]> {
-  _nodes?: PaginationModel<T>
-  _edges?: { cursor: string; node: Omit<T[number], 'id'> & { id: string } }[]
-  after?: Maybe<string>
-  first?: Maybe<number>
-  before?: Maybe<string>
-  last?: Maybe<number>
-  DEFAULT_PAGE_SIZE = 20
-  paginationDirection: Maybe<PaginationDirection>
-  size: number
+/**
+ * Class for paging to data.
+ * It is unnecessary for all of each data sources to inherit, if pagination is required, you can extends and use it.
+ * Follow this order:
+ * 
+ * `this.setParams(args)` -> prisma query with `this.findManyOptions` -> `this.node = [query results]` -> `this.generatePaginationResponse([TYPE_NAME])`
+ *
+ * @export
+ * @abstract
+ * @class Pagination
+ * @template T Response data type for item of edges
+ * 
+ * @example
+ * ```typescript
+ * class CategoryDataSrouce extends Pagination<Category> {
+    constructor(prisma: PrismaClient) {
+      super()
+      this.prisma = prisma
+    }
+
+    getCategoryConnection = async (params: PaginationParams) => {
+      this.setParams(params)
+      const [totalCount, categoryList] = await Promise.all([
+        this.prisma.category.count(),
+        this.prisma.category.findMany(this.findManyOptions),
+      ])
+      this.nodes = categoryList
+      const response = this.generatePaginationResponse('Category')
+      return {
+        totalCount,
+        ...response,
+      }
+    }
+  }
+ * ```
+ */
+export default abstract class Pagination<T = any> {
+  /**
+   * Array of data that selected from database.
+   *
+   * @private
+   * @type {PaginationModel<T>[]}
+   * @memberof Pagination
+   */
+  private _nodes?: PaginationModel<T>[]
+  /**
+   * Array of data actually return. There are generate from `this.generatePaginationResponse()` using `this._nodes`.
+   *
+   * @private
+   * @type {({ cursor: string; node: Omit<T, 'id'> & { id: string } }[])}
+   * @memberof Pagination
+   */
+  private _edges?: { cursor: string; node: Omit<T, 'id'> & { id: string } }[]
+  private after?: Maybe<string>
+  private first?: Maybe<number>
+  private before?: Maybe<string>
+  private last?: Maybe<number>
+  DEFAULT_PAGE_SIZE = 20 as const
+  /**
+   * Represent pagination direction to `FORWARD`, `BACKWARD`and `null`. It was dreived from `this.after` and `this.before`.
+   * If direction is `null`, make pagination same as `FORWARD` in `this.generatePaginationResponse()`.
+   *
+   * after -> FORWARD;
+   * before -> BACKWARD
+   *
+   * @private
+   * @type {Maybe<PaginationDirection>}
+   * @memberof Pagination
+   */
+  private paginationDirection: Maybe<PaginationDirection>
+  /**
+   * Number of rows to be selected. It was dreived from `this.first` and `this.last`.
+   * If `this.first` and `this.last` are `nil`, `this.size` is assign to `DEFAULT_PAGE_SIZE`.
+   *
+   * @private
+   * @type {number}
+   * @memberof Pagination
+   */
+  private size: number
+  /**
+   * Default prisma query option for pagination that was generated from `this.generateFindmanyOptions()` using `PrismaFindmanyParams`.
+   * If you required to other options, merge new options and this object in **datasource** not this class.
+   *
+   * @type {PrismaFindmanyParams}
+   * @memberof Pagination
+   *
+   * @example
+   * ```typescript
+   * const options = {
+   *   ...this.findManyOptions,
+   *   where: {
+   *     title: 'test category'
+   *   }
+   * }
+   * const category = await this.prisma.category.findMany(options)
+   * ```
+   *
+   */
   findManyOptions?: PrismaFindmanyParams
-  typeName: Maybe<string> = null
+  /**
+   * Schema name of pagination data.
+   *
+   * @private
+   * @type {Maybe<string>}
+   * @memberof Pagination
+   */
+  private typeName: Maybe<string>
 
   constructor() {
     this.paginationDirection = null
     this.size = 0
+    this.typeName = null
   }
 
-  protected setParams = ({ after, first, before, last }: PaginationConstructorParams) => {
+  protected setParams = ({ after, first, before, last }: PaginationParams) => {
     this.after = after
     this.first = first
     this.before = before
@@ -47,7 +142,7 @@ export default abstract class Pagination<T extends any[] = any[]> {
     this.initialize()
   }
 
-  protected initialize = () => {
+  private initialize = () => {
     this.validatePaginationArgs()
     if (typeof this.after === 'string' && typeof this.first === 'number' && isNil(this.before)) {
       this.paginationDirection = PaginationDirection.FORWARD
@@ -63,38 +158,37 @@ export default abstract class Pagination<T extends any[] = any[]> {
     this.findManyOptions = this.generateFindmanyOptions()
   }
 
-  protected validatePaginationArgs = () => {
+  private validatePaginationArgs = () => {
     if (!isNil(this.after) && !isNil(this.before)) {
-      throw Error('after, before 둘 중 하나만')
+      throw Error('Use only one of "after" and "before".')
     }
 
     if (typeof this.after === 'string' && typeof this.last === 'number') {
-      throw Error('after 쓸거면 first를 넣으셈')
+      throw Error('If you are going to use "after", do not pass "last".')
     }
 
     if (typeof this.before === 'string' && typeof this.first === 'number') {
-      throw Error('before 쓸거면 last를 넣으셈')
+      throw Error('If you are going to use "before", do not pass "first".')
     }
 
-    if (typeof this.first === 'number' && this.first >= 100) {
-      throw Error('0 - 100의 숫자만')
+    if (typeof this.first === 'number' && this.first > 0 && this.first <= 100) {
+      throw Error('"first" must be integer between 0 and 100.')
     }
 
-    if (typeof this.last === 'number' && this.last >= 100) {
-      throw Error('-100 - 0의 숫자만')
+    if (typeof this.last === 'number' && this.last > 0 && this.last <= 100) {
+      throw Error('"last" must be integer between 0 and 100')
     }
   }
 
-  protected decodeCursor = (cursorExpected?: Maybe<string>) => {
+  private decodeCursor = (cursorExpected?: Maybe<string>) => {
     if (typeof cursorExpected === 'string') {
       const [, cursor] = atob(cursorExpected).split(':')
       return parseInt(cursor, 10)
     }
   }
+  private encodeCursor = (typeName: string, id: number) => btoa(`${typeName}:${id}`)
 
-  protected encodeCursor = (typeName: string, id: number) => btoa(`${typeName}:${id}`)
-
-  protected generateFindmanyOptions = () => {
+  private generateFindmanyOptions = () => {
     if (this.paginationDirection === PaginationDirection.FORWARD) {
       const cursor = this.decodeCursor(this.after)
       return {
@@ -122,9 +216,9 @@ export default abstract class Pagination<T extends any[] = any[]> {
     }
   }
 
-  protected getPaginationStatus = () => {
+  private getPaginationStatus = () => {
     if (isNil(this._nodes)) {
-      throw Error('nodes가 없음')
+      throw Error('Does not exist nodes. Please check to assign this.nodes in your resolver.')
     }
 
     if (this.paginationDirection === PaginationDirection.FORWARD) {
@@ -141,27 +235,26 @@ export default abstract class Pagination<T extends any[] = any[]> {
       }
     }
 
-    console.log(this._nodes.length, this.size)
-
     return {
       hasPreviousPage: false,
       hasNextPage: this._nodes.length > this.size,
     }
   }
 
-  protected getCursorInfo = () => {
+  private getCursorInfo = () => {
     if (isNil(this._nodes)) {
-      throw Error('')
+      throw Error('Does not exist nodes. Please check to assign this.nodes in your resolver.')
     }
+
     return {
       startCursor: this._nodes.length === 0 ? null : this.encodeCursor('Cursor', this._nodes[0].id),
       endCursor: this._nodes.length === 0 ? null : this.encodeCursor('Cursor', this._nodes[this._nodes.length - 1].id),
     }
   }
 
-  protected generateEdges = () => {
+  private generateEdges = () => {
     if (isNil(this._nodes)) {
-      throw Error('nodes가 없음')
+      throw Error('Does not exist nodes. Please check to assign this.nodes in your resolver.')
     }
 
     this._edges = this._nodes.map((node) => ({
@@ -173,13 +266,13 @@ export default abstract class Pagination<T extends any[] = any[]> {
     }))
   }
 
-  set nodes(newNodes: PaginationModel<T>) {
+  set nodes(newNodes: PaginationModel<T>[]) {
     this._nodes = newNodes
   }
 
   protected generatePaginationResponse = (typeName: string) => {
     if (isNil(this._nodes)) {
-      throw Error('')
+      throw Error('Does not exist nodes. Please check to assign this.nodes in your resolver.')
     }
     this.typeName = typeName
     const paginationStatus = this.getPaginationStatus()
@@ -188,12 +281,13 @@ export default abstract class Pagination<T extends any[] = any[]> {
       (this.paginationDirection === PaginationDirection.FORWARD || isNil(this.paginationDirection)) &&
       paginationStatus.hasNextPage
     ) {
-      console.log('after or no')
-      this.nodes = take(this.size, this._nodes) as PaginationModel<T>
+      // Forward pagination이고 다음 페이지가 존재하면 first + 1개를 select했기 때문에 맨 뒤의 node하나를 지운다.
+      this.nodes = this._nodes.slice(0, this.size)
     }
 
     if (this.paginationDirection === PaginationDirection.BACKWARD && paginationStatus.hasPreviousPage) {
-      this.nodes = drop(1, this._nodes) as PaginationModel<T>
+      // Backward pagination이고 이전 페이지가 존재하면 last + 1개를 select했기 때문에 맨 앞의 node하나를 지운다.
+      this.nodes = this._nodes.slice(1)
     }
 
     const cursors = this.getCursorInfo()

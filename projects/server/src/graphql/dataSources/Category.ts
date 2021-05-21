@@ -1,10 +1,10 @@
 import { btoa } from '../../utils/base64'
 import Pagination from './Pagination'
-import type { PaginationConstructorParams } from './Pagination'
+import type { PaginationParams } from './Pagination'
 import type { PrismaClient, Category } from '../../../generated/client'
 import type { Maybe } from '../../../../shared/models'
 
-export default class CategoryDataSource extends Pagination<Category[]> {
+export default class CategoryDataSource extends Pagination<Category> {
   prisma: PrismaClient
 
   constructor(prisma: PrismaClient) {
@@ -20,7 +20,7 @@ export default class CategoryDataSource extends Pagination<Category[]> {
     }))
   }
 
-  getCategoryConnection = async (params: PaginationConstructorParams) => {
+  getCategoryConnection = async (params: PaginationParams) => {
     this.setParams(params)
     const [totalCount, categoryList] = await Promise.all([
       this.prisma.category.count(),
