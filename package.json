@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "generate:type": "graphql-codegen",
-    "server:dev": "yarn workspace server dev",
+    "server:dev": "graphql-codegen && yarn workspace server dev",
     "webapp:dev": "yarn workspace webapp dev",
     "lint": "yarn workspaces foreach run lint",
     "build": "yarn workspaces foreach run build",
