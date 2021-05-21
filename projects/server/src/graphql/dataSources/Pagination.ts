@@ -130,11 +130,20 @@ export default abstract class Pagination<T = any> {
 
   constructor() {
     this.paginationDirection = null
-    this.size = 0
+    this.size = this.DEFAULT_PAGE_SIZE
     this.typeName = null
   }
 
+  private resetParams = () => {
+    this.after = null
+    this.first = null
+    this.before = null
+    this.last = null
+    this.paginationDirection = null
+  }
+
   protected setParams = ({ after, first, before, last }: PaginationParams) => {
+    this.resetParams()
     this.after = after
     this.first = first
     this.before = before
@@ -144,17 +153,20 @@ export default abstract class Pagination<T = any> {
 
   private initialize = () => {
     this.validatePaginationArgs()
-    if (typeof this.after === 'string' && typeof this.first === 'number' && isNil(this.before)) {
+    if (isNil(this.after) && isNil(this.before)) {
+      this.size = this.DEFAULT_PAGE_SIZE
+    }
+
+    if (typeof this.after === 'string' && isNil(this.before)) {
       this.paginationDirection = PaginationDirection.FORWARD
-      this.size = this.first
+      this.size = this.first ?? this.DEFAULT_PAGE_SIZE
     }
 
-    if (isNil(this.after) && typeof this.before === 'string' && typeof this.last === 'number') {
+    if (isNil(this.after) && typeof this.before === 'string') {
       this.paginationDirection = PaginationDirection.BACKWARD
-      this.size = this.last
+      this.size = this.last ?? this.DEFAULT_PAGE_SIZE
     }
 
-    this.size = this.first ?? this.DEFAULT_PAGE_SIZE
     this.findManyOptions = this.generateFindmanyOptions()
   }
 
@@ -171,12 +183,20 @@ export default abstract class Pagination<T = any> {
       throw Error('If you are going to use "before", do not pass "first".')
     }
 
-    if (typeof this.first === 'number' && this.first > 0 && this.first <= 100) {
+    if (typeof this.first === 'number' && (this.first < 0 || this.first >= 100)) {
       throw Error('"first" must be integer between 0 and 100.')
     }
 
-    if (typeof this.last === 'number' && this.last > 0 && this.last <= 100) {
+    if (typeof this.last === 'number' && (this.last < 0 || this.last >= 100)) {
       throw Error('"last" must be integer between 0 and 100')
+    }
+
+    if (typeof this.first === 'number' && isNil(this.after)) {
+      throw Error('"first" must using with "after"')
+    }
+
+    if (typeof this.last === 'number' && isNil(this.before)) {
+      throw Error('"last" must using with "before"')
     }
   }
 
@@ -199,7 +219,6 @@ export default abstract class Pagination<T = any> {
         take: this.size + 1,
       }
     }
-
     if (this.paginationDirection === PaginationDirection.BACKWARD) {
       const cursor = this.decodeCursor(this.before)
       return {
