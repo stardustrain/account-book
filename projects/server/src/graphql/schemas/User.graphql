@@ -1,0 +1,5 @@
+type User implements Node {
+  id: ID!
+  email: String!
+  name: String
+}

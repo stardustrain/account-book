@@ -1,7 +1,0 @@
-type Category implements Node {
-  id: ID!
-  title: String!
-  ledgerItemConnection: LedgerItemConnection
-  createdAt: String!
-  updatedAt: String!
-}

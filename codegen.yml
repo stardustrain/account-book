@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'projects/server/graphql/schemas/*.graphql'
+schema: 'projects/server/src/graphql/schemas/*.graphql'
 generates:
   projects/shared/models.d.ts:
     plugins:
@@ -17,5 +17,4 @@ generates:
       constEnums: true
       namingConvention:
         enumValues: upper-case#upperCase
-      avoidOptionals: true
       contextType: ../src/index#Context
