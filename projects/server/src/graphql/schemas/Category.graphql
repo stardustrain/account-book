@@ -1,3 +1,30 @@
+input CreateCategoryInput {
+  title: String!
+  categoryType: String!
+}
+
+type CreateCategoryPayload {
+  category: Category
+}
+
+input UpdateCategoryInput {
+  id: String!
+  title: String
+  categoryType: String
+}
+
+type UpdateCategoryPayload {
+  category: Category
+}
+
+input DeleteCategoryInput {
+  id: String!
+}
+
+type DeleteCategoryPayload {
+  category: Category
+}
+
 type Category implements Node {
   id: ID!
   title: String!
