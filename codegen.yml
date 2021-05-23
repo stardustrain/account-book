@@ -7,7 +7,7 @@ generates:
     config:
       constEnums: true
       namingConvention:
-        enumValues: upper-case#upperCase
+        enumValues: change-case#upperCase
       avoidOptionals: true
   projects/server/generated/resolvers.d.ts:
     plugins:
@@ -16,5 +16,5 @@ generates:
     config:
       constEnums: true
       namingConvention:
-        enumValues: upper-case#upperCase
+        enumValues: change-case#upperCase
       contextType: ../src/index#Context

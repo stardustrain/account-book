@@ -2337,6 +2337,7 @@ __metadata:
     "@graphql-codegen/typescript": ^1.22.0
     "@graphql-codegen/typescript-resolvers": ^1.19.1
     "@yarnpkg/pnpify": ^3.0.0-rc.3
+    change-case-all: ^1.0.14
     graphql: ^15.5.0
     husky: ^6.0.0
     lint-staged: ^11.0.0
@@ -3529,7 +3530,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"change-case-all@npm:1.0.14":
+"change-case-all@npm:1.0.14, change-case-all@npm:^1.0.14":
   version: 1.0.14
   resolution: "change-case-all@npm:1.0.14"
   dependencies:
