@@ -15,9 +15,7 @@ const resolvers: CategoryResolver = {
       return await dataSources.category.getCategoryConnection(args)
     },
   },
-  Category: {
-    // ledgerItemConnection: (parent, { after, first, before, last }, { prisma }) => {},
-  },
+  Category: {},
 }
 
 export default resolvers

@@ -1,6 +1,7 @@
 type Category implements Node {
   id: ID!
   title: String!
+  categoryType: String! # FIXME: Change enum type when using mysql
   ledgerItemConnection(after: String, first: Int, before: String, last: Int): LedgerItemConnection
   createdAt: Date!
   updatedAt: Date!
