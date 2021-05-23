@@ -1,4 +1,4 @@
-import type { QueryResolvers, CategoryResolvers } from '../../../generated/resolvers'
+import type { QueryResolvers, CategoryResolvers } from '../../../../generated/resolvers'
 
 type CategoryResolver = {
   Query: QueryResolvers

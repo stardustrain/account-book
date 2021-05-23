@@ -7,14 +7,34 @@ class SetParamsTest extends Pagination {
     this.setParams(args)
   }
 }
-const setParamsTest = new SetParamsTest()
+const setParamsTest = new SetParamsTest('SetParamsTest')
 
 class ErrorWithNodesTest extends Pagination {
   // @ts-expect-error
   getMockData = (args) => {
     // @ts-ignore
     this.setParams(args)
-    this.generatePaginationResponse('ErrorWithNodes')
+    this.generatePaginationResponse()
+  }
+}
+
+class PaginationTest extends Pagination {
+  constructor(typeName: string) {
+    super(typeName)
+  }
+
+  // @ts-expect-error
+  getMockData = (args) => {
+    // @ts-ignore
+    this.setParams(args)
+    this.nodes = [
+      { id: 1, title: 'test' },
+      { id: 2, title: 'test2' },
+      { id: 3, title: 'test3' },
+      { id: 4, title: 'test4' },
+      { id: 5, title: 'test5' },
+    ]
+    return this.generatePaginationResponse()
   }
 }
 
@@ -101,10 +121,60 @@ describe('Pagination.ts', () => {
   })
 
   test('should throw error if does not assign array of data to this._nodes through this.nodes().', () => {
-    const errorWithNodes = new ErrorWithNodesTest()
+    const errorWithNodes = new ErrorWithNodesTest('ErrorWithNodesTest')
 
     expect(() => {
       errorWithNodes.getMockData({})
     }).toThrow('Does not exist nodes. Please check to assign this.nodes in your resolver.')
+  })
+
+  test('should return connection style list with this.generatePaginationResponse().', () => {
+    const paginationTest = new PaginationTest('Dummy')
+
+    expect(paginationTest.getMockData({})).toEqual({
+      pageInfo: {
+        endCursor: 'Q3Vyc29yOjU=',
+        hasNextPage: false,
+        hasPreviousPage: false,
+        startCursor: 'Q3Vyc29yOjE=',
+      },
+      edges: [
+        {
+          cursor: 'Q3Vyc29yOjE=',
+          node: {
+            id: 'RHVtbXk6MQ==',
+            title: 'test',
+          },
+        },
+        {
+          cursor: 'Q3Vyc29yOjI=',
+          node: {
+            id: 'RHVtbXk6Mg==',
+            title: 'test2',
+          },
+        },
+        {
+          cursor: 'Q3Vyc29yOjM=',
+          node: {
+            id: 'RHVtbXk6Mw==',
+            title: 'test3',
+          },
+        },
+        {
+          cursor: 'Q3Vyc29yOjQ=',
+          node: {
+            id: 'RHVtbXk6NA==',
+            title: 'test4',
+          },
+        },
+        {
+          cursor: 'Q3Vyc29yOjU=',
+          node: {
+            id: 'RHVtbXk6NQ==',
+            title: 'test5',
+          },
+        },
+      ],
+    })
   })
 })
