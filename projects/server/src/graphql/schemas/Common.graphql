@@ -10,3 +10,8 @@ type PageInfo {
 interface Node {
   id: ID!
 }
+
+enum CategoryType {
+  INCOME
+  OUTCOME
+}

@@ -1,5 +1,5 @@
 import { isNil } from 'rambda'
-import { atob, btoa } from '../../utils/base64'
+import BaseDataSource from './Base'
 import type { Maybe } from '../../../../shared/models'
 
 const enum PaginationDirection {
@@ -56,7 +56,7 @@ export type PaginationParams = {
   }
  * ```
  */
-export default abstract class Pagination<T = any> {
+export default abstract class Pagination<T = any> extends BaseDataSource<T> {
   /**
    * Array of data that selected from database.
    *
@@ -119,19 +119,11 @@ export default abstract class Pagination<T = any> {
    *
    */
   findManyOptions?: PrismaFindmanyParams
-  /**
-   * Schema name of pagination data.
-   *
-   * @private
-   * @type {Maybe<string>}
-   * @memberof Pagination
-   */
-  private typeName: Maybe<string>
 
-  constructor() {
+  constructor(typeName: string) {
+    super(typeName)
     this.paginationDirection = null
     this.size = this.DEFAULT_PAGE_SIZE
-    this.typeName = null
   }
 
   private resetParams = () => {
@@ -202,11 +194,9 @@ export default abstract class Pagination<T = any> {
 
   private decodeCursor = (cursorExpected?: Maybe<string>) => {
     if (typeof cursorExpected === 'string') {
-      const [, cursor] = atob(cursorExpected).split(':')
-      return parseInt(cursor, 10)
+      return this.getDatabaseId(cursorExpected)
     }
   }
-  private encodeCursor = (typeName: string, id: number) => btoa(`${typeName}:${id}`)
 
   private generateFindmanyOptions = () => {
     if (this.paginationDirection === PaginationDirection.FORWARD) {
@@ -266,8 +256,9 @@ export default abstract class Pagination<T = any> {
     }
 
     return {
-      startCursor: this._nodes.length === 0 ? null : this.encodeCursor('Cursor', this._nodes[0].id),
-      endCursor: this._nodes.length === 0 ? null : this.encodeCursor('Cursor', this._nodes[this._nodes.length - 1].id),
+      startCursor: this._nodes.length === 0 ? null : this.generateResponseId('Cursor', this._nodes[0].id),
+      endCursor:
+        this._nodes.length === 0 ? null : this.generateResponseId('Cursor', this._nodes[this._nodes.length - 1].id),
     }
   }
 
@@ -277,11 +268,8 @@ export default abstract class Pagination<T = any> {
     }
 
     this._edges = this._nodes.map((node) => ({
-      cursor: btoa(`Cursor:${node.id}`),
-      node: {
-        ...node,
-        id: btoa(`${this.typeName}:${node.id}`),
-      },
+      cursor: this.generateResponseId('Cursor', node.id),
+      node: this.generateResponseNode(node),
     }))
   }
 
@@ -289,11 +277,10 @@ export default abstract class Pagination<T = any> {
     this._nodes = newNodes
   }
 
-  protected generatePaginationResponse = (typeName: string) => {
+  protected generatePaginationResponse = () => {
     if (isNil(this._nodes)) {
       throw Error('Does not exist nodes. Please check to assign this.nodes in your resolver.')
     }
-    this.typeName = typeName
     const paginationStatus = this.getPaginationStatus()
 
     if (

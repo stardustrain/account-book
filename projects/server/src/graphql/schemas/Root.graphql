@@ -6,3 +6,9 @@ type Query {
   categoryList(limit: Int): [Category!]
   categoryConnection(after: String, first: Int, before: String, last: Int): CategoryConnection
 }
+
+type Mutation {
+  createCategory(input: CreateCategoryInput!): CreateCategoryPayload!
+  updateCategory(input: UpdateCategoryInput!): UpdateCategoryPayload!
+  deleteCategory(input: DeleteCategoryInput!): DeleteCategoryPayload!
+}

@@ -1,4 +1,4 @@
-import type { QueryResolvers, CategoryResolvers } from '../../../generated/resolvers'
+import type { QueryResolvers, CategoryResolvers } from '../../../../generated/resolvers'
 
 type CategoryResolver = {
   Query: QueryResolvers
@@ -15,9 +15,7 @@ const resolvers: CategoryResolver = {
       return await dataSources.category.getCategoryConnection(args)
     },
   },
-  Category: {
-    // ledgerItemConnection: (parent, { after, first, before, last }, { prisma }) => {},
-  },
+  Category: {},
 }
 
 export default resolvers
