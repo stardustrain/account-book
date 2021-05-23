@@ -1,0 +1,68 @@
+type Category implements Node {
+  id: ID!
+  title: String!
+  ledgerItemConnection(after: String, first: Int, before: String, last: Int): LedgerItemConnection
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type CategoryConnection {
+  edges: [CategoryEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type CategoryEdge {
+  cursor: String!
+  node: Category!
+}
+
+scalar Date
+
+type LedgerItem implements Node {
+  id: ID!
+  date: String!
+  description: String!
+  cash: Int!
+  card: Int!
+  category: Category!
+  tag: String
+  createdAt: String!
+  updatedAt: String!
+}
+
+type LedgerItemConnection {
+  edges: [LedgerItemEdge!]
+  nodes: [LedgerItem!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type LedgerItemEdge {
+  cursor: String!
+  node: LedgerItem!
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  node(id: String!): Node
+  user(email: String!): User
+  categoryList(limit: Int): [Category!]
+  categoryConnection(after: String, first: Int, before: String, last: Int): CategoryConnection
+}
+
+type User implements Node {
+  id: ID!
+  email: String!
+  name: String
+}

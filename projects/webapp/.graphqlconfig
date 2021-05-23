@@ -1,0 +1,8 @@
+{
+  "schemaPath": "schemas/schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "dev": "https://api.digitransit.fi/routing/v1/routers/finland/index/graphql"
+    }
+  }
+}

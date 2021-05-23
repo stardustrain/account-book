@@ -1,6 +1,9 @@
 overwrite: true
 schema: 'projects/server/src/graphql/schemas/*.graphql'
 generates:
+  projects/webapp/schema.graphql:
+    plugins:
+      - schema-ast
   projects/shared/models.d.ts:
     plugins:
       - typescript
