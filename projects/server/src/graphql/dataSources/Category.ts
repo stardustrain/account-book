@@ -1,4 +1,3 @@
-import { atob, btoa } from '../../utils/base64'
 import Pagination from './Pagination'
 import type { PaginationParams } from './Pagination'
 import type { PrismaClient, Category } from '../../../generated/client'
