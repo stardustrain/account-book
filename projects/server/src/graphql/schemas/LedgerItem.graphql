@@ -1,13 +1,13 @@
 type LedgerItem implements Node {
   id: ID!
-  date: String!
+  date: Date!
   description: String!
   cash: Int!
   card: Int!
-  category: Category!
+  category: Category
   tag: String
-  createdAt: String!
-  updatedAt: String!
+  createdAt: Date!
+  updatedAt: Date!
 }
 
 type LedgerItemEdge {
@@ -17,7 +17,6 @@ type LedgerItemEdge {
 
 type LedgerItemConnection {
   edges: [LedgerItemEdge!]
-  nodes: [LedgerItem!]
   pageInfo: PageInfo!
   totalCount: Int!
 }
