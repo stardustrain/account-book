@@ -12,8 +12,24 @@ export default class CategoryDataSource extends Pagination<Category> {
     this.prisma = prisma
   }
 
+  getCategory = async (id: string | number, options?: any) => {
+    const prismaId = typeof id === 'string' ? parseInt(id, 10) : id
+    const category = await this.prisma.category.findUnique({
+      where: {
+        id: prismaId,
+      },
+      ...options,
+    })
+    if (category) {
+      return this.generateResponseNode(category)
+    }
+    return null
+  }
+
   getCategoryList = async (limit?: Maybe<number>) => {
-    const categoryList = await this.prisma.category.findMany({ take: limit ?? 20 })
+    const categoryList = await this.prisma.category.findMany({
+      take: limit ?? 20,
+    })
     return categoryList.map((category) => this.generateResponseNode(category))
   }
 
@@ -23,6 +39,7 @@ export default class CategoryDataSource extends Pagination<Category> {
       this.prisma.category.count(),
       this.prisma.category.findMany(this.findManyOptions),
     ])
+    console.log(categoryList)
     this.nodes = categoryList
     const response = this.generatePaginationResponse()
     return {
