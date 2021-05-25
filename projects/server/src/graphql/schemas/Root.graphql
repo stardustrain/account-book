@@ -5,6 +5,8 @@ type Query {
   # Category
   categoryList(limit: Int): [Category!]
   categoryConnection(after: String, first: Int, before: String, last: Int): CategoryConnection
+  ledgerItemList(limit: Int): [LedgerItem!]
+  ledgerItemConnection(after: String, first: Int, before: String, last: Int): LedgerItemConnection
 }
 
 type Mutation {

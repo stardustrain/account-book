@@ -15,7 +15,16 @@ const resolvers: CategoryResolver = {
       return await dataSources.category.getCategoryConnection(args)
     },
   },
-  Category: {},
+
+  Category: {
+    ledgerItemConnection: async (parent, args, { dataSources }) => {
+      return await dataSources.ledgerItem.getLedgerItemConnection(args, {
+        where: {
+          categoryId: dataSources.ledgerItem.getDatabaseId(parent.id),
+        },
+      })
+    },
+  },
 }
 
 export default resolvers

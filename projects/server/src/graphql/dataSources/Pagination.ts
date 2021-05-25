@@ -1,6 +1,6 @@
 import { isNil } from 'rambda'
 import BaseDataSource from './Base'
-import type { Maybe } from '../../../../shared/models'
+import type { Maybe } from '../../utils/types'
 
 const enum PaginationDirection {
   FORWARD,

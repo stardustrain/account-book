@@ -23,11 +23,11 @@ server.register(mercurius, {
   context: contextBuilder,
 })
 
-server.listen(4000, (err, address) => {
+server.listen(4000, (err) => {
   if (err) {
     server.log.error(err)
     process.exit(1)
   }
-  console.info('server listening on 4000')
+  console.info('\x1b[35mserver listening on 4000')
   server.log.info('server listening on 4000')
 })
