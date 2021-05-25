@@ -3,7 +3,7 @@ input CreateLedgerItemInput {
   description: String!
   cash: Int
   card: Int
-  categoryId: Int!
+  categoryId: String!
   tag: String
 }
 
@@ -12,11 +12,12 @@ type CreateLedgerItemPayload {
 }
 
 input UpdateLedgerItemInput {
+  id: String!
   date: Date!
   description: String!
   cash: Int
   card: Int
-  categoryId: Int!
+  categoryId: String!
   tag: String
 }
 
