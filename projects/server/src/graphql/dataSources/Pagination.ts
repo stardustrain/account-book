@@ -1,4 +1,4 @@
-import { isNil } from 'rambda'
+import { isNil } from 'ramda'
 import BaseDataSource from './Base'
 import type { Maybe } from '../../utils/types'
 

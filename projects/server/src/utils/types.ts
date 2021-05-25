@@ -59,3 +59,6 @@ declare module 'mercurius' {
 
 export const isPrismaLedgerItem = (ledgerItem: any): ledgerItem is LedgerItem =>
   'categoryId' in ledgerItem && typeof ledgerItem.categoryId === 'number'
+export type NonNullObject<T extends object> = {
+  [K in keyof T]-?: NonNullable<T[K]>
+}

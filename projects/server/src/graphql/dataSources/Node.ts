@@ -1,4 +1,4 @@
-import { includes, cond, equals } from 'rambda'
+import { includes, cond, equals } from 'ramda'
 import { atob, btoa } from '../../utils/base64'
 import type { PrismaClient } from '../../../generated/client'
 import type { ResolversTypes } from '../../../generated/resolvers'

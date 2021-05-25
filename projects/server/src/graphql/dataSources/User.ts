@@ -1,4 +1,4 @@
-import { isNil } from 'rambda'
+import { isNil } from 'ramda'
 import { btoa } from '../../utils/base64'
 import type { PrismaClient } from '../../../generated/client'
 
