@@ -19,7 +19,7 @@ export default class Prisma {
         const result = await next(params)
         const after = Date.now()
 
-        console.log(`Query ${params.model}.${params.action} => ${after - before}ms`)
+        console.log(`\x1b[34mprisma:orm\x1b[0m ${params.model}.${params.action} => \x1b[32m${after - before}ms`)
 
         return result
       })

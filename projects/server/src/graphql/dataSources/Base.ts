@@ -6,7 +6,7 @@ export default class BaseDataSource<T = any> {
    * Schema name of pagination data.
    *
    * @private
-   * @type {Maybe<string>}
+   * @type {string}
    * @memberof Pagination
    */
   typeName: string

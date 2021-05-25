@@ -1,7 +1,7 @@
 import Pagination from './Pagination'
 import type { PaginationParams } from './Pagination'
 import type { PrismaClient, LedgerItem, Prisma } from '../../../generated/client'
-import type { Maybe } from '../../../generated/resolvers'
+import type { Maybe } from '../../utils/types'
 
 export default class LedgerItemDatasource extends Pagination<LedgerItem> {
   prisma: PrismaClient

@@ -1,5 +1,7 @@
+import type { Context } from '../index'
 import type { LedgerItem } from '../../generated/client'
 import type { Maybe, LedgerItemConnection, Category, CategoryLedgerItemConnectionArgs } from '../../generated/resolvers'
+export type { Maybe } from '../../generated/resolvers'
 
 type PossiblePromise<T> = T | Promise<T>
 interface DeepPartialArray<T> extends Array<PossiblePromise<DeepPartial<PossiblePromise<T>>>> {}
@@ -39,7 +41,7 @@ type LoaderQuery<TObject extends Record<string, any>, TParams extends Record<str
   params: TParams
 }
 
-export interface Loaders<TContext = import('mercurius').MercuriusContext & { reply: import('fastify').FastifyReply }> {
+interface Loaders<TContext = import('mercurius').MercuriusContext & { reply: import('fastify').FastifyReply }> {
   Category?: {
     ledgerItemConnection?: LoaderResolver<
       Maybe<LedgerItemConnection>,
@@ -48,6 +50,11 @@ export interface Loaders<TContext = import('mercurius').MercuriusContext & { rep
       TContext
     >
   }
+}
+
+declare module 'mercurius' {
+  interface MercuriusContext extends Context {}
+  interface MercuriusLoaders extends Loaders {}
 }
 
 export const isPrismaLedgerItem = (ledgerItem: any): ledgerItem is LedgerItem =>
