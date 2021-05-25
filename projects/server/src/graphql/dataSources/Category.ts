@@ -74,6 +74,13 @@ export default class CategoryDataSource extends Pagination<Category> {
 
   deleteCategory = async (input: DeleteCategoryInput) => {
     const id = this.getDatabaseId(input.id)
+
+    // FIXME: Execute 2 queries because of prisma does not support cascade deletes.
+    await this.prisma.ledgerItem.deleteMany({
+      where: {
+        categoryId: id,
+      },
+    })
     const deletedCategory = await this.prisma.category.delete({
       where: {
         id,
