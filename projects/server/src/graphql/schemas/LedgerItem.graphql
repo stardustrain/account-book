@@ -1,3 +1,37 @@
+input CreateLedgerItemInput {
+  date: Date!
+  description: String!
+  cash: Int
+  card: Int
+  categoryId: Int!
+  tag: String
+}
+
+type CreateLedgerItemPayload {
+  ledgerItem: LedgerItem
+}
+
+input UpdateLedgerItemInput {
+  date: Date!
+  description: String!
+  cash: Int
+  card: Int
+  categoryId: Int!
+  tag: String
+}
+
+type UpdateLedgerItemPayload {
+  ledgerItem: LedgerItem
+}
+
+input DeleteLedgerItemInput {
+  id: String!
+}
+
+type DeleteLedgerItemPayload {
+  ledgerItem: LedgerItem
+}
+
 type LedgerItem implements Node {
   id: ID!
   date: Date!

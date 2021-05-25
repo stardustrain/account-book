@@ -13,4 +13,8 @@ type Mutation {
   createCategory(input: CreateCategoryInput!): CreateCategoryPayload!
   updateCategory(input: UpdateCategoryInput!): UpdateCategoryPayload!
   deleteCategory(input: DeleteCategoryInput!): DeleteCategoryPayload!
+
+  createLedgerItem(input: CreateLedgerItemInput!): CreateLedgerItemPayload!
+  updateLedgerItem(input: UpdateLedgerItemInput!): UpdateLedgerItemPayload!
+  deleteLedgerItem(input: DeleteLedgerItemInput!): DeleteLedgerItemPayload!
 }
