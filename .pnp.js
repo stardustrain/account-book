@@ -3004,6 +3004,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/ramda", [
+        ["npm:0.27.40", {
+          "packageLocation": "./.yarn/cache/@types-ramda-npm-0.27.40-74cd6fc0d7-e970bfb981.zip/node_modules/@types/ramda/",
+          "packageDependencies": [
+            ["@types/ramda", "npm:0.27.40"],
+            ["ts-toolbelt", "npm:6.15.5"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/react", [
         ["npm:17.0.5", {
           "packageLocation": "./.yarn/cache/@types-react-npm-17.0.5-b0d58aba4c-f9793e8113.zip/node_modules/@types/react/",
@@ -12179,11 +12189,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["rambda", [
-        ["npm:6.7.0", {
-          "packageLocation": "./.yarn/cache/rambda-npm-6.7.0-cde41dc18b-5863f916f7.zip/node_modules/rambda/",
+      ["ramda", [
+        ["npm:0.27.1", {
+          "packageLocation": "./.yarn/cache/ramda-npm-0.27.1-5818f2cb83-9aa4655dff.zip/node_modules/ramda/",
           "packageDependencies": [
-            ["rambda", "npm:6.7.0"]
+            ["ramda", "npm:0.27.1"]
           ],
           "linkType": "HARD",
         }]
@@ -13054,6 +13064,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@prisma/client", "virtual:14bbcbd07e0b259d02805bb1b50f715cfe4a26b438c4500912cf98e60b90a0339e00e260cff55a0b78a2917eec2e1ffd319ad2615b324495770e6a71eb973b98#npm:2.22.1"],
             ["@types/jest", "npm:26.0.23"],
             ["@types/node", "npm:15.3.0"],
+            ["@types/ramda", "npm:0.27.40"],
             ["@typescript-eslint/eslint-plugin", "virtual:14bbcbd07e0b259d02805bb1b50f715cfe4a26b438c4500912cf98e60b90a0339e00e260cff55a0b78a2917eec2e1ffd319ad2615b324495770e6a71eb973b98#npm:4.23.0"],
             ["@typescript-eslint/parser", "virtual:14bbcbd07e0b259d02805bb1b50f715cfe4a26b438c4500912cf98e60b90a0339e00e260cff55a0b78a2917eec2e1ffd319ad2615b324495770e6a71eb973b98#npm:4.23.0"],
             ["eslint", "npm:7.26.0"],
@@ -13063,7 +13074,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mercurius", "npm:7.6.1"],
             ["nodemon", "npm:2.0.7"],
             ["prisma", "npm:2.22.1"],
-            ["rambda", "npm:6.7.0"],
+            ["ramda", "npm:0.27.1"],
             ["ts-jest", "virtual:14bbcbd07e0b259d02805bb1b50f715cfe4a26b438c4500912cf98e60b90a0339e00e260cff55a0b78a2917eec2e1ffd319ad2615b324495770e6a71eb973b98#npm:26.5.6"],
             ["ts-node", "virtual:14bbcbd07e0b259d02805bb1b50f715cfe4a26b438c4500912cf98e60b90a0339e00e260cff55a0b78a2917eec2e1ffd319ad2615b324495770e6a71eb973b98#npm:9.1.1"],
             ["typescript", "patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"]
@@ -14445,6 +14456,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "packagePeers": [
             "typescript"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["ts-toolbelt", [
+        ["npm:6.15.5", {
+          "packageLocation": "./.yarn/cache/ts-toolbelt-npm-6.15.5-e42f89942f-d2f585ee34.zip/node_modules/ts-toolbelt/",
+          "packageDependencies": [
+            ["ts-toolbelt", "npm:6.15.5"]
           ],
           "linkType": "HARD",
         }]
