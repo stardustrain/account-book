@@ -6906,6 +6906,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["fastify-cors", [
+        ["npm:6.0.1", {
+          "packageLocation": "./.yarn/cache/fastify-cors-npm-6.0.1-5981c22aee-8a280ae908.zip/node_modules/fastify-cors/",
+          "packageDependencies": [
+            ["fastify-cors", "npm:6.0.1"],
+            ["fastify-plugin", "npm:3.0.0"],
+            ["vary", "npm:1.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["fastify-error", [
         ["npm:0.3.1", {
           "packageLocation": "./.yarn/cache/fastify-error-npm-0.3.1-9c1ef70a86-ba3b964a9c.zip/node_modules/fastify-error/",
@@ -13069,6 +13080,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:14bbcbd07e0b259d02805bb1b50f715cfe4a26b438c4500912cf98e60b90a0339e00e260cff55a0b78a2917eec2e1ffd319ad2615b324495770e6a71eb973b98#npm:4.23.0"],
             ["eslint", "npm:7.26.0"],
             ["fastify", "npm:3.15.1"],
+            ["fastify-cors", "npm:6.0.1"],
             ["graphql", "npm:15.5.0"],
             ["jest", "npm:26.6.3"],
             ["mercurius", "npm:7.6.1"],
@@ -15020,6 +15032,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/value-or-promise-npm-1.0.6-8a8298ef32-ea5fa311aa.zip/node_modules/value-or-promise/",
           "packageDependencies": [
             ["value-or-promise", "npm:1.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["vary", [
+        ["npm:1.1.2", {
+          "packageLocation": "./.yarn/cache/vary-npm-1.1.2-b49f70ae63-591f059f72.zip/node_modules/vary/",
+          "packageDependencies": [
+            ["vary", "npm:1.1.2"]
           ],
           "linkType": "HARD",
         }]

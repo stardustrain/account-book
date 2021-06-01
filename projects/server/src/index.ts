@@ -1,4 +1,5 @@
 import fastify from 'fastify'
+import cors from 'fastify-cors'
 import mercurius from 'mercurius'
 
 import schema, { dataSources } from './graphql'
@@ -6,6 +7,9 @@ import Prisma from './utils/Prisma'
 
 const server = fastify({
   // logger: true,
+})
+server.register(cors, {
+  origin: ['http://localhost:3000'],
 })
 
 const contextBuilder = async () => {
