@@ -1,0 +1,112 @@
+input CreateCategoryInput {
+  title: String!
+  categoryType: String!
+}
+
+type CreateCategoryPayload {
+  category: Category
+}
+
+input UpdateCategoryInput {
+  id: String!
+  title: String
+  categoryType: String
+}
+
+type UpdateCategoryPayload {
+  category: Category
+}
+
+input DeleteCategoryInput {
+  id: String!
+}
+
+type DeleteCategoryPayload {
+  category: Category
+}
+
+type Category implements Node {
+  id: ID!
+  title: String!
+  categoryType: String!
+  ledgerItemConnection(after: String, first: Int, before: String, last: Int): LedgerItemConnection
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type CategoryEdge {
+  cursor: String!
+  node: Category!
+}
+
+type CategoryConnection {
+  edges: [CategoryEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+""""""
+scalar Date
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+interface Node {
+  id: ID!
+}
+
+enum CategoryType {
+  INCOME
+  OUTCOME
+}
+
+type LedgerItem implements Node {
+  id: ID!
+  date: String!
+  description: String!
+  cash: Int!
+  card: Int!
+  category: Category!
+  tag: String
+  createdAt: String!
+  updatedAt: String!
+}
+
+type LedgerItemEdge {
+  cursor: String!
+  node: LedgerItem!
+}
+
+type LedgerItemConnection {
+  edges: [LedgerItemEdge!]
+  nodes: [LedgerItem!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type Query {
+  node(id: String!): Node
+
+  """User"""
+  user(email: String!): User
+
+  """Category"""
+  categoryList(limit: Int): [Category!]
+  categoryConnection(after: String, first: Int, before: String, last: Int): CategoryConnection
+}
+
+type Mutation {
+  createCategory(input: CreateCategoryInput!): CreateCategoryPayload!
+  updateCategory(input: UpdateCategoryInput!): UpdateCategoryPayload!
+  deleteCategory(input: DeleteCategoryInput!): DeleteCategoryPayload!
+}
+
+type User implements Node {
+  id: ID!
+  email: String!
+  name: String
+}

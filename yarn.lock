@@ -711,7 +711,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.7.2":
   version: 7.14.0
   resolution: "@babel/runtime@npm:7.14.0"
   dependencies:
@@ -1856,6 +1856,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/isomorphic-fetch@npm:^0.0.35":
+  version: 0.0.35
+  resolution: "@types/isomorphic-fetch@npm:0.0.35"
+  checksum: a9806f9618e860b7b8b37b8b283ca67ef81bc67fb6110c87d06684fe256d81b2e4ef395852c6b7804014c7c7023fddf42112a7868bf71a5d13d84d44e67b08ed
+  languageName: node
+  linkType: hard
+
 "@types/isomorphic-form-data@npm:^2.0.0":
   version: 2.0.0
   resolution: "@types/isomorphic-form-data@npm:2.0.0"
@@ -1981,12 +1988,33 @@ __metadata:
   languageName: node
   linkType: hard
 
+<<<<<<< HEAD
 "@types/ramda@npm:^0.27.40":
   version: 0.27.40
   resolution: "@types/ramda@npm:0.27.40"
   dependencies:
     ts-toolbelt: ^6.15.1
   checksum: e970bfb9814b96bf5da955688e5dc6de582b56974ba4378c9a5dc46dcb9d0f3378aae420cceec21e154931242007cdaddc8daf8158b255a0b790164897e2aac4
+=======
+"@types/react-relay@npm:^11.0.1":
+  version: 11.0.1
+  resolution: "@types/react-relay@npm:11.0.1"
+  dependencies:
+    "@types/react": "*"
+    "@types/relay-runtime": "*"
+  checksum: 708b2c0b3a26705310389ec4a48b1466f256aa6e6f878102e5cee9e840af0a5133c99e78183a2d7e0c8811141779384167877154f3dbfc413d3090215b4b1bba
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:*":
+  version: 17.0.9
+  resolution: "@types/react@npm:17.0.9"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: 12f1962a317cad805bd6fcd1da3ac1a58a782db28e522bdded163f1bdfc8388f8a110d200a6925cccbf3d442e1325199ce5da710f11ee73f0f140c6734fea127
+>>>>>>> fd12d8d (Issue-18 Add relay setting.)
   languageName: node
   linkType: hard
 
@@ -1998,6 +2026,13 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: f9793e8113f14122d6ed20643b4fe27d30e10d7c80571a1d238c13f8171864f2a7b337194bf41310724498586ed4560fffd081a2d21e488afbb1aca33534189b
+  languageName: node
+  linkType: hard
+
+"@types/relay-runtime@npm:*, @types/relay-runtime@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "@types/relay-runtime@npm:11.0.0"
+  checksum: 10791c1e74d44e071639a5d24358d973b6db938f8294f4a0e9a735d4c3868327f2af7d086c8a4675573cd9e3bc568736bbbde2095cd68c686e35f62bf630fae2
   languageName: node
   linkType: hard
 
@@ -2909,6 +2944,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-plugin-macros@npm:^2.0.0":
+  version: 2.8.0
+  resolution: "babel-plugin-macros@npm:2.8.0"
+  dependencies:
+    "@babel/runtime": ^7.7.2
+    cosmiconfig: ^6.0.0
+    resolve: ^1.12.0
+  checksum: fc4e1224df180d88f44f6f31e448cf51a75c8aa7e0fd828e30c4143f69af6d49ce933f36952478a4e372485db35b6219628bcff16d7f5add724230addbc19e7d
+  languageName: node
+  linkType: hard
+
+"babel-plugin-relay@npm:^11.0.2":
+  version: 11.0.2
+  resolution: "babel-plugin-relay@npm:11.0.2"
+  dependencies:
+    babel-plugin-macros: ^2.0.0
+  peerDependencies:
+    graphql: ^15.0.0
+  checksum: 984405c660b7b1132683e6902ec0523e07b5a8eab6c990786067ffa05aac964dabf2e08b72e9636904e94a838afd5a38b2749a7873a3671f4f882a422cdf8cee
+  languageName: node
+  linkType: hard
+
 "babel-plugin-syntax-jsx@npm:6.18.0":
   version: 6.18.0
   resolution: "babel-plugin-syntax-jsx@npm:6.18.0"
@@ -3407,6 +3464,31 @@ __metadata:
     function-bind: ^1.1.1
     get-intrinsic: ^1.0.2
   checksum: 18cc6107a1f028247f2b505dae73ad1c63b737addfcd43ff75159f072c5c827300c1fb66f26ee0ec70fc2fdd005ce68d65c05a2a34b74bab08c3b1921954ada9
+  languageName: node
+  linkType: hard
+
+"caller-callsite@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "caller-callsite@npm:2.0.0"
+  dependencies:
+    callsites: ^2.0.0
+  checksum: 4f62ec12d0241f372d65156b98ca5d0abb5470a4ae497e11b58d945158ab9411a21e7a42873e62c9765ba7faf658dd524f96833f6d2f776011374bb80c85761d
+  languageName: node
+  linkType: hard
+
+"caller-path@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "caller-path@npm:2.0.0"
+  dependencies:
+    caller-callsite: ^2.0.0
+  checksum: c4b19e43d4d2afc62c2b283d74844811a4517a162f9490f62c74421ddcfbd3e3334890fd9c474db98b20d62598a0ae659798c402623866b6f6068683a81ec5e7
+  languageName: node
+  linkType: hard
+
+"callsites@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "callsites@npm:2.0.0"
+  checksum: 0ccd42292bdc6cd4a7dbfc0d91c232cbc9dc6d0db61659fd63deba826596c7302745b9f75d5c9db6da166e41207436045bd391fefb03e754b4f928b6e8b404ae
   languageName: node
   linkType: hard
 
@@ -3981,7 +4063,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:6.0.0":
+"cosmiconfig@npm:6.0.0, cosmiconfig@npm:^6.0.0":
   version: 6.0.0
   resolution: "cosmiconfig@npm:6.0.0"
   dependencies:
@@ -3991,6 +4073,18 @@ __metadata:
     path-type: ^4.0.0
     yaml: ^1.7.2
   checksum: bbd6bbaefe15938107da21f2b5f2d5ede75c7ed4bca5af904d91987c59b050ac95f5e786d9021e16959e0119b36174b190f6040a1daf6fddc75361ab123c0d45
+  languageName: node
+  linkType: hard
+
+"cosmiconfig@npm:^5.0.5":
+  version: 5.2.1
+  resolution: "cosmiconfig@npm:5.2.1"
+  dependencies:
+    import-fresh: ^2.0.0
+    is-directory: ^0.3.1
+    js-yaml: ^3.13.1
+    parse-json: ^4.0.0
+  checksum: 02d51fb28871d1e6114333f1109e47714e280d60ee8f05cf03bd5a0b9d0954f3d1a99b01edb3ea8147e743b2c9caa3738f745157ebddd5b93efeac324d3d5239
   languageName: node
   linkType: hard
 
@@ -6329,10 +6423,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"immutable@npm:^4.0.0-rc.12":
+  version: 4.0.0-rc.12
+  resolution: "immutable@npm:4.0.0-rc.12"
+  checksum: 8510ebe1cf9ce47b913bc17a72d9fc5cbbe5a121fdd63ac33693e5e47aef27bb3b3e31ca77d6f4928b6a80c41cfcc08f6f928bc1bd06448a1b6df11ee1781c0b
+  languageName: node
+  linkType: hard
+
 "immutable@npm:~3.7.6":
   version: 3.7.6
   resolution: "immutable@npm:3.7.6"
   checksum: 33fb106a330bae44cea58a2bc51c667850ea198396f329787718ab9ae70f6302734d0beb81e22de06876e38807f813a81bb09628e096ef89d9b5e06185edd16a
+  languageName: node
+  linkType: hard
+
+"import-fresh@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "import-fresh@npm:2.0.0"
+  dependencies:
+    caller-path: ^2.0.0
+    resolve-from: ^3.0.0
+  checksum: c95204ecfbea5b6c8fb792faaa765ee2d0c5912eb92485dc9e4f9f40326438b182ac4de8eec769c28dbc35656309fb79d0bae591e7305e7cfd069c2347c745ca
   languageName: node
   linkType: hard
 
@@ -6476,6 +6587,15 @@ __metadata:
     has: ^1.0.3
     side-channel: ^1.0.4
   checksum: 2465f832aa80c3740f2cfc5c75e74c727b4a45b8d80e295bb66dbb59435de536b9951b7f4d1a8075d5bb90054bd30ff22a37356a247fba3608987c7765569345
+  languageName: node
+  linkType: hard
+
+"invariant@npm:^2.2.4":
+  version: 2.2.4
+  resolution: "invariant@npm:2.2.4"
+  dependencies:
+    loose-envify: ^1.0.0
+  checksum: 96d8a2a4f0ad21020c5847546fc36bec5c0870d99f071aaa93df00c1036439d48211a1823ab6128f78a15ccc4c4f62baf6a65f6c0ed489270dd44d0a04f443a1
   languageName: node
   linkType: hard
 
@@ -6640,6 +6760,13 @@ __metadata:
     is-data-descriptor: ^1.0.0
     kind-of: ^6.0.2
   checksum: be8004010eac165fa9a61513a51881c4bac324d060916d44bfee2be03edf500d5994591707147f1f4c93ae611f97de27debdd8325702158fcd0cf8fcca3fbe06
+  languageName: node
+  linkType: hard
+
+"is-directory@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "is-directory@npm:0.3.1"
+  checksum: e921dc18177e0ec9d1f05637b356d2974f2dacf9e120a90243a95f02bdd24a9c8bf7eb30ae51a7aa8d0e5dbb8a845fd58b105626535b693154d602f4618a8f5a
   languageName: node
   linkType: hard
 
@@ -7711,6 +7838,13 @@ __metadata:
     promiseback: ^2.0.2
     safer-buffer: ^2.0.2
   checksum: 91d5ea48710a5f6ab0f085c3cb587d4695af71f9cbef608ec1b0d536c4b9c3f0dbb9157a6ddf2d2c8c7ca1f8c14b2809fbfcdfb2dc42f9235b59384520b0dd1a
+  languageName: node
+  linkType: hard
+
+"json-parse-better-errors@npm:^1.0.1":
+  version: 1.0.2
+  resolution: "json-parse-better-errors@npm:1.0.2"
+  checksum: b4c4f0e43b43892af887db742b26f9aa6302b09cd5f6e655ead49fca9f47f3cdd300dcf98cf5218778262be51d7b29859221206fc98b87a1a61c5af7618dae89
   languageName: node
   linkType: hard
 
@@ -9416,6 +9550,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"parse-json@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "parse-json@npm:4.0.0"
+  dependencies:
+    error-ex: ^1.3.1
+    json-parse-better-errors: ^1.0.1
+  checksum: fa9d23708f562c447f2077c6007938334a16e772c5a9b25a6eb1853d792bc34560b483bb6079143040bc89e5476288dd2edd5a60024722986e3e434d326218c9
+  languageName: node
+  linkType: hard
+
 "parse-json@npm:^5.0.0":
   version: 5.2.0
   resolution: "parse-json@npm:5.2.0"
@@ -10044,6 +10188,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-relay@npm:^11.0.2":
+  version: 11.0.2
+  resolution: "react-relay@npm:11.0.2"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+    fbjs: ^3.0.0
+    invariant: ^2.2.4
+    nullthrows: ^1.1.1
+    relay-runtime: 11.0.2
+  peerDependencies:
+    react: ^16.9.0 || ^17
+  checksum: eeb60242665af3f214bffc9017e1d12c938eec1981a8019710bb0ce07b7e4233d8ee28e68c9ac765e672c01bcafdcd5f294496754d002bb5bd90053a2a68e6af
+  languageName: node
+  linkType: hard
+
 "react@npm:17.0.2":
   version: 17.0.2
   resolution: "react@npm:17.0.2"
@@ -10164,6 +10323,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"relay-compiler-language-typescript@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "relay-compiler-language-typescript@npm:14.0.0"
+  dependencies:
+    immutable: ^4.0.0-rc.12
+    invariant: ^2.2.4
+  peerDependencies:
+    "@types/react-relay": ">=7.0.17"
+    "@types/relay-runtime": ">=10.1.8"
+    relay-compiler: ">=10.1.3"
+    relay-runtime: ">=10.1.3"
+    typescript: ">=4.2.3"
+  checksum: a3e41a338e12b11827fde783c4cd5aa4418c05c160c964992fe0294199dd1ad1198be135f2bf792d1ab1fde1a868dda23d123baa859f41a47f2215f64fb2ffab
+  languageName: node
+  linkType: hard
+
 "relay-compiler@npm:10.1.0":
   version: 10.1.0
   resolution: "relay-compiler@npm:10.1.0"
@@ -10192,6 +10367,46 @@ __metadata:
   languageName: node
   linkType: hard
 
+"relay-compiler@npm:^11.0.2":
+  version: 11.0.2
+  resolution: "relay-compiler@npm:11.0.2"
+  dependencies:
+    "@babel/core": ^7.0.0
+    "@babel/generator": ^7.5.0
+    "@babel/parser": ^7.0.0
+    "@babel/runtime": ^7.0.0
+    "@babel/traverse": ^7.0.0
+    "@babel/types": ^7.0.0
+    babel-preset-fbjs: ^3.3.0
+    chalk: ^4.0.0
+    fb-watchman: ^2.0.0
+    fbjs: ^3.0.0
+    glob: ^7.1.1
+    immutable: ~3.7.6
+    invariant: ^2.2.4
+    nullthrows: ^1.1.1
+    relay-runtime: 11.0.2
+    signedsource: ^1.0.0
+    yargs: ^15.3.1
+  peerDependencies:
+    graphql: ^15.0.0
+  bin:
+    relay-compiler: bin/relay-compiler
+  checksum: cc8be7af695a81c5110fad06d1a19ba7a9d6cbf73605a44c207599cb301b115a6e46664bab18f1fa67390cddc2c1298260e739f73a5b9e2fd3588dd794847e35
+  languageName: node
+  linkType: hard
+
+"relay-config@npm:^11.0.2":
+  version: 11.0.2
+  resolution: "relay-config@npm:11.0.2"
+  dependencies:
+    cosmiconfig: ^5.0.5
+  peerDependencies:
+    relay-compiler: 11.0.2
+  checksum: 2c47fdfa32f4d7d19b35a7f780746989d71162f9ed43060c0d2338a19d4b4234c321fe9d812597536e04e26993915d9f205dcf9fffb4d0de2098a57a3230dc69
+  languageName: node
+  linkType: hard
+
 "relay-runtime@npm:10.1.0":
   version: 10.1.0
   resolution: "relay-runtime@npm:10.1.0"
@@ -10199,6 +10414,17 @@ __metadata:
     "@babel/runtime": ^7.0.0
     fbjs: ^3.0.0
   checksum: 39361fab462b0afeb00b7e2e839742caafe69e5327a74e2acf8ffc0bda1d7b5ce49e16df01835e7b9c1b7dbec6d1f47dfe88af930102a03b8b92abf5002575d0
+  languageName: node
+  linkType: hard
+
+"relay-runtime@npm:11.0.2, relay-runtime@npm:^11.0.2":
+  version: 11.0.2
+  resolution: "relay-runtime@npm:11.0.2"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+    fbjs: ^3.0.0
+    invariant: ^2.2.4
+  checksum: 64f767da52d5960a5d9384586ed9ba54254d03f60adcd21f59ef55b153a3720cd648cb7c42f3d3060ac0c74ed9a63e2fa07afe1b69e5ba18f0ecd6be4d4cb2c7
   languageName: node
   linkType: hard
 
@@ -10340,6 +10566,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"resolve-from@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "resolve-from@npm:3.0.0"
+  checksum: dc0c83b3b867753b9fe3a901587fa70efc596a69355eb133fd68f8bbaef4e77266ef38b8a01a2d664aa32ba732425d54413b3d581ca7dff96bee177c61a0c84d
+  languageName: node
+  linkType: hard
+
 "resolve-from@npm:^4.0.0":
   version: 4.0.0
   resolution: "resolve-from@npm:4.0.0"
@@ -10361,7 +10594,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@^1.10.0, resolve@^1.18.1":
+"resolve@^1.10.0, resolve@^1.12.0, resolve@^1.18.1":
   version: 1.20.0
   resolution: "resolve@npm:1.20.0"
   dependencies:
@@ -10381,7 +10614,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@^1.10.0#builtin<compat/resolve>, resolve@patch:resolve@^1.18.1#builtin<compat/resolve>":
+"resolve@patch:resolve@^1.10.0#builtin<compat/resolve>, resolve@patch:resolve@^1.12.0#builtin<compat/resolve>, resolve@patch:resolve@^1.18.1#builtin<compat/resolve>":
   version: 1.20.0
   resolution: "resolve@patch:resolve@npm%3A1.20.0#builtin<compat/resolve>::version=1.20.0&hash=3388aa"
   dependencies:
@@ -12464,15 +12697,26 @@ typescript@^4.2.4:
   version: 0.0.0-use.local
   resolution: "webapp@workspace:projects/webapp"
   dependencies:
+    "@types/isomorphic-fetch": ^0.0.35
     "@types/node": ^15.3.0
     "@types/react": ^17.0.5
+    "@types/react-relay": ^11.0.1
+    "@types/relay-runtime": ^11.0.0
     "@typescript-eslint/eslint-plugin": ^4.23.0
     "@typescript-eslint/parser": ^4.23.0
+    babel-plugin-relay: ^11.0.2
     eslint: ^7.26.0
     eslint-plugin-react: latest
+    graphql: ^15.5.0
+    isomorphic-fetch: ^3.0.0
     next: 10.2.0
     react: 17.0.2
     react-dom: 17.0.2
+    react-relay: ^11.0.2
+    relay-compiler: ^11.0.2
+    relay-compiler-language-typescript: ^14.0.0
+    relay-config: ^11.0.2
+    relay-runtime: ^11.0.2
     typescript: ^4.2.4
   languageName: unknown
   linkType: soft
