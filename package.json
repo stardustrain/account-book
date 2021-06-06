@@ -3,6 +3,7 @@
   "workspaces": [
     "projects/*"
   ],
+  "private": true,
   "scripts": {
     "generate:type": "graphql-codegen",
     "server:dev": "graphql-codegen && yarn workspace server dev",
