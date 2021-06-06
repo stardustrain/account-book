@@ -5,7 +5,7 @@ const fetchGraphQL = async (query: string, variables: Variables) => {
   const response = await fetch('http://localhost:4000/graphql', {
     method: 'POST',
     headers: {
-      'Content-type': 'applications/json',
+      'Content-type': 'application/json',
     },
     body: JSON.stringify({
       query,
