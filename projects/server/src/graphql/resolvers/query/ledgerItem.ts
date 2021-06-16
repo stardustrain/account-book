@@ -1,3 +1,4 @@
+import { btoa } from '../../../utils/base64'
 import type { QueryResolvers, LedgerItemResolvers } from '../../../../generated/resolvers'
 import { isPrismaLedgerItem } from '../../../utils/types'
 
@@ -18,7 +19,7 @@ const resolvers: LedgerItemResolver = {
   LedgerItem: {
     category: async (parent, _, { dataSources }) => {
       if (isPrismaLedgerItem(parent)) {
-        return await dataSources.category.getCategory(parent.categoryId)
+        return await dataSources.category.getCategory(btoa(`Category:${parent.categoryId}`))
       }
       return null
     },
