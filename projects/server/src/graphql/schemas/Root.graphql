@@ -1,8 +1,7 @@
 type Query {
   node(id: String!): Node
-  # User
   user(email: String!): User
-  # Category
+  category(id: String!): Category
   categoryList(limit: Int): [Category!]
   categoryConnection(after: String, first: Int, before: String, last: Int): CategoryConnection
   ledgerItemList(limit: Int): [LedgerItem!]

@@ -7,6 +7,10 @@ type CategoryResolver = {
 
 const resolvers: CategoryResolver = {
   Query: {
+    category: async (_, { id }, { dataSources }) => {
+      return dataSources.category.getCategory(id)
+    },
+
     categoryList: async (_, { limit }, { dataSources }) => {
       return await dataSources.category.getCategoryList(limit)
     },

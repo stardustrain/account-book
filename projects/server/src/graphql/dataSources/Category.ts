@@ -12,8 +12,8 @@ export default class CategoryDataSource extends Pagination<Category> {
     this.prisma = prisma
   }
 
-  getCategory = async (id: string | number, options?: Prisma.CategoryFindUniqueArgs) => {
-    const prismaId = typeof id === 'string' ? parseInt(id, 10) : id
+  getCategory = async (id: string, options?: Prisma.CategoryFindUniqueArgs) => {
+    const prismaId = this.getDatabaseId(id)
     const category = await this.prisma.category.findUnique({
       where: {
         id: prismaId,
