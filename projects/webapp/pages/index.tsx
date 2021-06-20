@@ -1,7 +1,7 @@
 import { graphql, fetchQuery, useLazyLoadQuery } from 'react-relay'
 import { initEnvironment } from '../relay/relayEnvironment'
-import type { pages_index_CategoryList_Query } from '../__generated__/pages_index_CategoryList_Query.graphql'
 import LayoutTemplate from '../components/LayoutTemplate'
+import type { pages_index_CategoryList_Query } from '../__generated__/pages_index_CategoryList_Query.graphql'
 
 const query = graphql`
   query pages_index_CategoryList_Query($limit: Int) {
