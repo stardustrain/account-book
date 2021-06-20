@@ -1,6 +1,3 @@
-/* color code roote에 정의 */
-/* stit.config.js 생성 */
-
 :root {
   --base-black: 218, 21%;
   --colors-black-10: hsla(var(--base-black), 10%, 100%);
