@@ -24,5 +24,13 @@ export const { styled, global, keyframes, getCssString, theme } = createCss({
       blue90: 'var(--colors-blue-90)',
       blue100: 'var(--colors-blue-100)',
     },
+    space: {
+      spacing0: 'var(--spacing0)',
+      spacing1: 'var(--spacing1)',
+      spacing2: 'var(--spacing2)',
+      spacing3: 'var(--spacing3)',
+      spacing4: 'var(--spacing4)',
+      spacing5: 'var(--spacing5)',
+    },
   },
 })
