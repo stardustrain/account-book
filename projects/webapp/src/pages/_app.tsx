@@ -1,6 +1,6 @@
-import '../styles/globals.css'
+import '../../styles/globals.css'
 import { RelayEnvironmentProvider } from 'react-relay/hooks'
-import { useEnvironment } from '../relay/relayEnvironment'
+import { useEnvironment } from '../../relay/relayEnvironment'
 
 import type { AppProps } from 'next/app'
 
