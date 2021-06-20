@@ -18,9 +18,15 @@
   --colors-blue-50: hsla(var(--base-blue), 50%, 100%);
   --colors-blue-60: hsla(var(--base-blue), 60%, 100%);
   --colors-blue-70: hsla(var(--base-blue), 70%, 100%);
-  --colors-blue-80: hsla(var(--base-blue), 70%, 100%);
+  --colors-blue-80: hsla(var(--base-blue), 80%, 100%);
   --colors-blue-90: hsla(var(--base-blue), 90%, 100%);
   --colors-blue-100: hsla(var(--base-blue), 100%, 100%);
+  --spacing0: 0;
+  --spacing1: 0.5rem;
+  --spacing2: 1rem;
+  --spacing3: 1.5rem;
+  --spacing4: 2rem;
+  --spacing5: 2.5rem;
 }
 
 html,

@@ -1,5 +1,6 @@
 import { graphql, fetchQuery, useLazyLoadQuery } from 'react-relay'
 import { initEnvironment } from '../relay/relayEnvironment'
+import LayoutTemplate from '../components/LayoutTemplate'
 import type { pages_index_CategoryList_Query } from '../__generated__/pages_index_CategoryList_Query.graphql'
 
 const query = graphql`
@@ -36,5 +37,9 @@ export default function Home() {
   const data = useLazyLoadQuery<pages_index_CategoryList_Query>(query, { limit: 10 })
 
   console.log(data.categoryList)
-  return <div></div>
+  return (
+    <LayoutTemplate>
+      <div>index</div>
+    </LayoutTemplate>
+  )
 }
