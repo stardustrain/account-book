@@ -1,6 +1,6 @@
 import { graphql, fetchQuery, useLazyLoadQuery } from 'react-relay'
-import { initEnvironment } from '../../relay/relayEnvironment'
-import type { pages_index_CategoryList_Query } from '../../__generated__/pages_index_CategoryList_Query.graphql'
+import { initEnvironment } from '../relay/relayEnvironment'
+import type { pages_index_CategoryList_Query } from '../__generated__/pages_index_CategoryList_Query.graphql'
 import LayoutTemplate from '../components/LayoutTemplate'
 
 const query = graphql`
@@ -36,6 +36,7 @@ export const getStaticProps = async () => {
 export default function Home() {
   const data = useLazyLoadQuery<pages_index_CategoryList_Query>(query, { limit: 10 })
 
+  console.log(data.categoryList)
   return (
     <LayoutTemplate>
       <div>index</div>
