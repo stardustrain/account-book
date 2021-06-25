@@ -15,6 +15,9 @@ const resolvers: LedgerItemResolver = {
     ledgerItemConnection: async (_, args, { dataSources }) => {
       return await dataSources.ledgerItem.getLedgerItemConnection(args)
     },
+    ledgerOfMonth: async (_, args, { dataSources }) => {
+      return await dataSources.ledgerItem.getLegderItemOfMonth(args)
+    },
   },
   LedgerItem: {
     category: async (parent, _, { dataSources }) => {
