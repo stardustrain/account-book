@@ -105,7 +105,7 @@ export const categories = [
   },
 ].map((category) => ({
   ...category,
-  categoryType: getTrueOrFalse() ? 'INCOME' : 'OUTCOME',
+  categoryType: getTrueOrFalse() ? 'INCOME' : 'EXPENSES',
 }))
 
 export const ledgerItems = [
