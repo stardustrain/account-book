@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { graphql, fetchQuery, useLazyLoadQuery } from 'react-relay'
 import { initEnvironment } from '../relay/relayEnvironment'
 import Modal from '../components/Modal'
-import LayoutTemplate from '../components/LayoutTemplate'
 import Collapsable from '../components/Collapse'
+import LayoutTemplate from '../components/LayoutTemplate'
 
 import type { pages_index_CategoryList_Query } from '../__generated__/pages_index_CategoryList_Query.graphql'
 
@@ -39,9 +39,9 @@ export const getStaticProps = async () => {
 
 export default function Home() {
   const [visible, setVisible] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState(false)
   const data = useLazyLoadQuery<pages_index_CategoryList_Query>(query, { limit: 10 })
   const { categoryList } = useLazyLoadQuery<pages_index_CategoryList_Query>(query, { limit: 10 })
-  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <LayoutTemplate>
@@ -63,6 +63,11 @@ export default function Home() {
         }}>
         Click
       </button>
+      <ul>
+        {categoryList?.map((category) => (
+          <li key={category.title}>{category.title}</li>
+        ))}
+      </ul>
     </LayoutTemplate>
   )
 }
