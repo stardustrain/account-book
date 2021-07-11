@@ -62,8 +62,6 @@ const CloseButton = styled('button', {
   padding: '4px',
 })
 
-const Content = styled('div', {})
-
 const Modal = ({ children, visible, title, onClose }: Props) => {
   const [open, setOpen] = useState<boolean>(visible)
 
@@ -109,7 +107,7 @@ const Modal = ({ children, visible, title, onClose }: Props) => {
                     <Close size={12} />
                   </CloseButton>
                 </header>
-                <Content id="dialog-description">{children}</Content>
+                <div id="dialog-description">{children}</div>
               </Wrapper>
             </Container>
           </FocusTrap>
