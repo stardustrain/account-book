@@ -69,6 +69,10 @@ const Modal = ({ children, visible, title, onClose }: Props) => {
 
   const modalRef = useRef<HTMLElement>(null)
 
+  const handleEscape = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') return onClose()
+  }
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const rootContainer = document.createElement('div')
@@ -82,6 +86,12 @@ const Modal = ({ children, visible, title, onClose }: Props) => {
     setOpen(visible)
   }, [visible])
 
+  useEffect(() => {
+    if (modalRef.current) {
+      document.addEventListener('keyup', handleEscape)
+    }
+  }, [modalRef])
+
   return modalRef.current
     ? ReactDOM.createPortal(
         open ? (
@@ -89,16 +99,17 @@ const Modal = ({ children, visible, title, onClose }: Props) => {
             <Container onClick={onClose}>
               <Wrapper
                 onClick={(e) => e.stopPropagation()}
-                role="modal"
-                aria-labelledby="modal-heading"
-                aria-describedby="modal-description">
+                role="dialog"
+                aria-labelledby="dialog-heading"
+                aria-describedby="dialog-description"
+                aria-modal="true">
                 <header>
-                  {title ? <Title id="modal-heading">{title}</Title> : null}
+                  {title ? <Title id="dialog-heading">{title}</Title> : null}
                   <CloseButton onClick={onClose} aria-label="Close">
                     <Close size={12} />
                   </CloseButton>
                 </header>
-                <Content id="modal-description">{children}</Content>
+                <Content id="dialog-description">{children}</Content>
               </Wrapper>
             </Container>
           </FocusTrap>
