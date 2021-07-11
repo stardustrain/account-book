@@ -48,7 +48,7 @@ const Wrapper = styled('section', {
   minWidth: '400px',
 })
 
-const Header = styled('header', {
+const Title = styled('h2', {
   marginBottom: '$spacing2',
 })
 
@@ -87,11 +87,13 @@ const Modal = ({ children, visible, title, onClose }: Props) => {
         open ? (
           <FocusTrap>
             <Container onClick={onClose}>
-              <Wrapper onClick={(e) => e.stopPropagation()}>
-                {title ? <Header>{title}</Header> : null}
-                <CloseButton onClick={onClose}>
-                  <Close size={12} />
-                </CloseButton>
+              <Wrapper onClick={(e) => e.stopPropagation()} role="modal" aria-labelledby="modal-heading">
+                <header>
+                  {title ? <Title id="modal-heading">{title}</Title> : null}
+                  <CloseButton onClick={onClose} aria-label="Close">
+                    <Close size={12} />
+                  </CloseButton>
+                </header>
                 <Content>{children}</Content>
               </Wrapper>
             </Container>
