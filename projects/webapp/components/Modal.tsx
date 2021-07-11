@@ -87,14 +87,18 @@ const Modal = ({ children, visible, title, onClose }: Props) => {
         open ? (
           <FocusTrap>
             <Container onClick={onClose}>
-              <Wrapper onClick={(e) => e.stopPropagation()} role="modal" aria-labelledby="modal-heading">
+              <Wrapper
+                onClick={(e) => e.stopPropagation()}
+                role="modal"
+                aria-labelledby="modal-heading"
+                aria-describedby="modal-description">
                 <header>
                   {title ? <Title id="modal-heading">{title}</Title> : null}
                   <CloseButton onClick={onClose} aria-label="Close">
                     <Close size={12} />
                   </CloseButton>
                 </header>
-                <Content>{children}</Content>
+                <Content id="modal-description">{children}</Content>
               </Wrapper>
             </Container>
           </FocusTrap>
