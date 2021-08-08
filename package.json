@@ -12,14 +12,21 @@
     "build": "yarn workspaces foreach run build",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "postpublish": "pinst --enable",
+    "commit": "git-cz",
+    "commitlint": "commitlint"
   },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@commitlint/prompt": "^13.1.0",
     "@graphql-codegen/cli": "^1.21.4",
     "@graphql-codegen/typescript": "^1.22.0",
     "@graphql-codegen/typescript-resolvers": "^1.19.1",
     "@yarnpkg/pnpify": "^3.0.0-rc.3",
     "change-case-all": "^1.0.14",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "pinst": "^2.0.0",
@@ -31,5 +38,10 @@
   },
   "dependencies": {
     "graphql": "^15.5.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
