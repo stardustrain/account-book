@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from 'typeorm'
 
-export class AddCategoryEntity1628426996872 implements MigrationInterface {
-  name = 'AddCategoryEntity1628426996872'
+export class AddCategoryEntity1628428295596 implements MigrationInterface {
+  name = 'AddCategoryEntity1628428295596'
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`CREATE TYPE "category_categorytype_enum" AS ENUM('INCOME', 'OUTCOME')`)

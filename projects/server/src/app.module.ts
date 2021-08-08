@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConfigModule, ConfigService } from '@nestjs/config'
+import { CategoriesModule } from './categories/categories.module'
 
 @Module({
   imports: [
@@ -10,14 +11,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
       envFilePath: '.env',
     }),
     GraphQLModule.forRoot({
-      typePaths: ['./**/schema/*.graphql'],
-      definitions: {
-        path: join(process.cwd(), 'src/graphql.ts'),
-        outputAs: 'class',
-        defaultScalarType: 'unknown',
-        customScalarTypeMapping: {
-          Date: 'Date',
-        },
+      autoSchemaFile: join(process.cwd(), 'src/schema.graphql'),
+      sortSchema: true,
+      buildSchemaOptions: {
+        dateScalarMode: 'timestamp',
       },
     }),
     TypeOrmModule.forRootAsync({
@@ -27,12 +24,13 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
         type: 'postgres',
         host: configService.get('TYPEORM_HOST'),
         post: configService.get('TYPEORM_PORT'),
-        dataBase: configService.get('TYPEORM_DATABASE'),
+        database: configService.get('TYPEORM_DATABASE'),
         username: configService.get('TYPEORM_USERNAME'),
         password: configService.get('TYPEORM_PASSWORD'),
         autoLoadEntities: true,
       }),
     }),
+    CategoriesModule,
   ],
   controllers: [],
   providers: [],

@@ -9,7 +9,8 @@ module.exports = {
   database: env.TYPEORM_DATABASE,
   username: env.TYPEORM_USERNAME,
   password: env.TYPEORM_PASSWORD,
-  entities: ['src/**/*.entity.ts'],
+  entities: ['src/**/*.model.ts'],
+  migrations: ['src/migrations/*.ts'],
   cli: {
     migrationsDir: 'src/migrations',
   },
