@@ -10,3 +10,4 @@
 
 **/shared/models.d.ts
 node_modules
+.vscode
