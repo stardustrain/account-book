@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "server-legacy",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
