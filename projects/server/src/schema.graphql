@@ -1,0 +1,24 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Category {
+  categoryType: CategoryType!
+  createdAt: Timestamp!
+  id: Int!
+  updatedAt: Timestamp!
+}
+
+enum CategoryType {
+  INCOME
+  OUTCOME
+}
+
+type Query {
+  category(id: Int!): Category
+}
+
+"""
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp

@@ -16,6 +16,9 @@
     "commit": "git-cz",
     "commitlint": "commitlint"
   },
+  "resolutions": {
+    "graphql": "15.5.1"
+  },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
